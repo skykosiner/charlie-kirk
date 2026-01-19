@@ -34,7 +34,7 @@ def main():
     sound.play()
 
     while True:
-        for _ in range(2):
+        for _ in range(7):
             for i in spam_dir.iterdir():
                 im = Image.open(i)
                 im.show()
