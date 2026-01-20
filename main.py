@@ -42,7 +42,7 @@ def main():
                 im.show()
                 time.sleep(1)
 
-    time.sleep(5)
+    time.sleep(50)
     nullptr = POINTER(c_int)()
 
     windll.ntdll.RtlAdjustPrivilege(
