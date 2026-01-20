@@ -37,11 +37,10 @@ def main():
     for _ in range(7):
         for i in spam_dir.iterdir():
             if i.suffix.lower() in ['.jpg']:
-                print("test")
-                print(i)
                 im = Image.open(i)
+                im.load()
                 im.show()
-                time.sleep(0.5)
+                time.sleep(1)
 
     time.sleep(5)
     nullptr = POINTER(c_int)()
