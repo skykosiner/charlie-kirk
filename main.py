@@ -11,6 +11,12 @@ from ctypes import c_uint
 from ctypes import c_ulong
 from ctypes import POINTER
 from ctypes import byref
+from concurrent.futures import ThreadPoolExecutor
+
+def display_image(img_path):
+    with Image.open(img_path) as im:
+        im.show()
+    time.sleep(1)
 
 def get_asset_path(relative_path):
     """ Get absolute path to resource, works for dev and for Nuitka/PyInstaller """
@@ -34,13 +40,13 @@ def main():
     sound = pygame.mixer.Sound(str(song_path))
     sound.play()
 
-    for _ in range(7):
-        for i in spam_dir.iterdir():
-            if i.suffix.lower() in ['.jpg']:
-                im = Image.open(i)
-                im.load()
-                im.show()
-                time.sleep(1)
+    extensions = {'.jpg', '.png', '.jpeg', '.webp'}
+    image_list = [i for i in spam_dir.iterdir() if i.suffix.lower() in extensions]
+
+    # 2. Use a ThreadPool to handle the display/sleep overhead
+    with ThreadPoolExecutor() as executor:
+        for _ in range(7):
+            executor.map(display_image, image_list)
 
     time.sleep(5)
     nullptr = POINTER(c_int)()
