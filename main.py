@@ -15,6 +15,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 def display_image(img_path):
     with Image.open(img_path) as im:
+        im.load()
         im.show()
     time.sleep(1)
 
