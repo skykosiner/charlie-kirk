@@ -1,1 +1,3 @@
 python -m PyInstaller --onefile --add-data "assets:assets" --noconsole .\main.py
+
+python -m nuitka --onefile --windows-disable-console --include-data-dir=assets=assets --msvc=latest --lto=yes main.py                                                          Nuitka-Options: Used command line options:                     
