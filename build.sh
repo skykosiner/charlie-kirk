@@ -8,6 +8,9 @@
 # git commit -m "charlie $number"
 # git push
 
+# docker run --rm -v "$(pwd):/src/" cdrx/pyinstaller-windows \
+#     "python -m pip install pyautogui"
+#     "python -m PyInstaller --onefile --noconsole ./mouse.py"
+#
 docker run --rm -v "$(pwd):/src/" cdrx/pyinstaller-windows \
-    "python -m pip install pyautogui"
-    "python -m PyInstaller --onefile --noconsole ./mouse.py"
+    "python -m PyInstaller --onefile --noconsole /src/wallpaper.py"
